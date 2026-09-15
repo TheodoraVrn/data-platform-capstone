@@ -23,7 +23,7 @@ An end-to-end data platform built for **SoftCart**, an e-commerce enterprise. Th
 - **`transform_data`**: Filters out anomalous internal traffic (`grep -v "198.46.149.143"`).
 - **`load_data`**: Compresses and archives cleaned payloads into `weblog.tar`.
 
-### 4. Big Data Analytics with Apache Spark (`spark_streaming.py`)
+### 4. Big Data Analytics with Apache Spark (`spark_streaming.ipynb`)
 - Implemented Spark DataFrames and Spark SQL transformations to analyse search terms.
 
 ### 5. BI Dashboards (IBM Cognos Analytics)
