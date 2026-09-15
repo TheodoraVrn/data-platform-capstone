@@ -1,6 +1,6 @@
 # IBM Data Engineering Capstone Project: SoftCart Platform
 
-[![IBM Data Engineering](https://img.shields.io/badge/IBM-Data%20Engineering%20Capstone-blue)](https://www.coursera.org/professional-certificates/ibm-data-engineer)
+[![IBM Data Engineering](https://img.shields.io/badge/IBM-Data%20Engineering%20Capstone-blue)]([https://www.coursera.org/professional-certificates/ibm-data-engineer](https://www.coursera.org/learn/data-enginering-capstone-project))
 [![Apache Airflow](https://img.shields.io/badge/Orchestration-Apache%20Airflow-017CEE?logo=apacheairflow&logoColor=white)](https://airflow.apache.org/)
 [![Database](https://img.shields.io/badge/Databases-MySQL%20%7C%20PostgreSQL%20%7C%20Db2-informational)](https://www.postgresql.org/)
 
