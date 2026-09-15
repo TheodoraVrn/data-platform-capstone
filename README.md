@@ -1,46 +1,42 @@
 # IBM Data Engineering Capstone Project: SoftCart Platform
 
 [![IBM Data Engineering](https://img.shields.io/badge/IBM-Data%20Engineering%20Capstone-blue)](https://www.coursera.org/learn/data-enginering-capstone-project)
-[![Apache Airflow](https://img.shields.io/badge/Orchestration-Apache%20Airflow-017CEE?logo=apacheairflow&logoColor=white)](https://airflow.apache.org/)
-[![Database](https://img.shields.io/badge/Databases-MySQL%20%7C%20PostgreSQL%20%7C%20Db2-informational)](https://www.postgresql.org/)
 
-An end-to-end data platform built for **SoftCart**, an e-commerce enterprise. This project covers transactional data modeling, automated ETL pipelines, orchestration, big data streaming analytics, and executive business intelligence dashboards.
+An end-to-end data platform built for **SoftCart**, an e-commerce enterprise. This project covers transactional data modeling, automated ETL pipelines, orchestration, big data streaming analytics, and business intelligence dashboards.
 
 ---
 
-## 🏗️ Architecture & Modules
+## Architecture & Modules
 
 ### 1. Data Warehousing & Dimensional Modeling
-- Designed a **Star Schema** to optimize analytical querying across sales events.
+- Designed a data warehouse using pgAdmin ERD design tool and created a **Star Schema** to optimize analytical querying across sales events.
 - Created dimension tables: `softcartDimDate`, `softcartDimCategory`, `softcartDimItem`, and `softcartDimCountry`.
 - Implemented the central `softcartFactSales` table referencing surrogate keys.
 
 ### 2. Automated Incremental ETL (`automation.py`)
-- Programmed a Python utility to bridge transactional data (MySQL staging) with the enterprise analytical warehouse (PostgreSQL/Db2).
+- Set up an ETL process using Python to automate the extraction of daily transactional data from the MySQL database, transform it, and then load it into a data warehouse using PostgreSQL.
 - Extracts the latest `last_rowid` recorded in the warehouse and queries only new incremental records (`WHERE rowid > last_rowid`).
-- Performs batch inserts via `cursor.executemany` with transaction safety.
 
 ### 3. Workflow Orchestration with Apache Airflow (`process_web_log.py`)
-- Automated daily processing of web server access logs using a custom Airflow DAG.
+- Automated daily processing of web server access logs using a custom Airflow DAG and stored it in a format to prepare it for loading into the Big Data platform.
 - **`extract_data`**: Pulls client IP addresses using Linux command-line utilities (`cut`).
-- **`transform_data`**: Filters out anomalous internal/bot traffic (`grep -v "198.46.149.143"`).
+- **`transform_data`**: Filters out anomalous internal traffic (`grep -v "198.46.149.143"`).
 - **`load_data`**: Compresses and archives cleaned payloads into `weblog.tar`.
-- Managed task retries, error alerting parameters, and pipeline execution dependencies (`extract_data >> transform_data >> load_data`).
 
-### 4. Big Data Analytics with Apache Spark
-- Processed high-volume clickstream and transaction feeds.
-- Implemented Spark DataFrames and Spark SQL transformations to calculate rolling metrics and top-performing merchandise.
+### 4. Big Data Analytics with Apache Spark (`spark_streaming.py`)
+- Implemented Spark DataFrames and Spark SQL transformations to analyse search terms.
 
 ### 5. BI Dashboards (IBM Cognos Analytics)
-- Built interactive management dashboards visualizing:
-  - Month-wise gross sales progression for the year 2020.
-  - Category-level sales splits and regional distribution.
+- Built dashboards visualizing:
+  - Month-wise total sales for the year 2020.
+  - Category-wise sales of electronic goods.
+  - Month-wise total sales for a given year.
 
 ---
 
 ## 🛠️ Tech Stack
-- **Languages:** Python 3.10+, Bash, SQL
+- **Languages:** Python, Bash, SQL
 - **Orchestration:** Apache Airflow
-- **Databases & Warehouses:** MySQL, PostgreSQL, IBM Db2
+- **Databases & Warehouses:** MySQL, PostgreSQL
 - **Big Data Engine:** Apache Spark / PySpark
 - **Business Intelligence:** IBM Cognos Analytics
